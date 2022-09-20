@@ -1,3 +1,4 @@
+import { tab } from '@testing-library/user-event/dist/tab'
 import React, { useState } from 'react'
 import './App.css'
 import butcherPigImage from './assets/butcherPig.jpeg'
@@ -34,21 +35,48 @@ const App = () => {
 
       // ACTION ITEM: your Pig Latin logic goes here!
 
-      for (let i = 0; i <vowelsArray.length; i++) {
-        if (vowelsArray[i] === eachWord[0]) {
-          return eachWord + "way"
+      // for (let i = 0; i <vowelsArray.length; i++) {
+      //   if (vowelsArray[i] === eachWord[0]) {
+      //     return eachWord + "way"
            
           
           
-        }
-      }
-      for (let i = 0; i <eachWord.length; i++) {
-        if(eachWord[i] === "q")
-        return eachWord.split("qu") + "quay" 
-      }
+      //   }
+      // }
+      // for (let i = 0; i <eachWord.length; i++) {
+      //   if(eachWord[i] === "q")
+      //   return eachWord.split("qu") + "quay" 
+      // }
 
-      // if (eachWord = vowelsArray)
+      // for (let i = 0; i <eachWord.length; i++) {
+      //   if (vowelsArray.length === 0 && eachWord[i] === "y"){
+      //     const vowelWord = 
+      //   }
+      // }
+
+      if (vowelsArray.includes(eachWord.charAt(0))){
+        return eachWord.concat("way")
+      } else if (eachWord.startsWith("qu")){
+        return eachWord.slice(2).concat("quay") 
+      } else if (eachWord.startsWith("squ")){
+        return eachWord.slice(3).concat("squay")
+      } else if(vowelsArray.length === 0){
+        return eachWord.substring(eachWord.indexOf("y")).concat(eachWord.substring(0, eachWord.indexOf("y"))) + "ay"
+      } else
+        return eachWord.substring(eachWord.indexOf(vowelsArray[0])).concat(eachWord.substring(0, eachWord.indexOf(vowelsArray[0]))) + "ay"
     
+      
+
+        // else if (eachWord.includes("y"))
+        // return eachWord.slice("").concat(eachWord) + "ay"
+
+
+
+
+        
+        // else if (eachWord.includes("y"))
+        // return eachWord.concat("ay")
+
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
 
@@ -84,7 +112,7 @@ const App = () => {
   return (
     <div className="page-container">
       <div className="body-container">
-        <h1>Pig Latin Translator</h1>
+        <h1>🥓Athian and Nate's Pig Latin Translator 🥓</h1>
         <img
           src={butcherPigImage}
           alt="pig with butcher cut names in pig latin"
@@ -92,7 +120,7 @@ const App = () => {
         />
 
         <div className="input-section">
-          <h4>Enter phrase to be translated:</h4>
+          <h4>Enter an English phrase to be translated into Pig Latin:</h4>
           <input
             type="text"
             className="user-input"
@@ -105,7 +133,7 @@ const App = () => {
         </div>
         <p>{inputTranslated}</p>
       </div>
-      <footer>&copy; 2022 | Coded by: Your Names Here!</footer>
+      <footer>&copy; 2022 | Coded by: Athian and Nate</footer>
     </div>
   )
 }
