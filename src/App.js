@@ -1,3 +1,4 @@
+import { tab } from '@testing-library/user-event/dist/tab'
 import React, { useState } from 'react'
 import './App.css'
 import butcherPigImage from './assets/butcherPig.jpeg'
@@ -5,11 +6,12 @@ import butcherPigImage from './assets/butcherPig.jpeg'
 const App = () => {
 
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
+  const [userInput, setUserInput] = useState("")
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
-  const myPigLatinCodeHere = () => {
+  const pigLatinCode = () => {
+    
 
     // NO MODIFICATION NEEDED: the variable "arrayOfUserInput" will contain the text input from the user split into an array of words
     const arrayOfUserInput = userInput.split(" ")
@@ -33,10 +35,53 @@ const App = () => {
 
       // ACTION ITEM: your Pig Latin logic goes here!
 
+      // for (let i = 0; i <vowelsArray.length; i++) {
+      //   if (vowelsArray[i] === eachWord[0]) {
+      //     return eachWord + "way"
+           
+          
+          
+      //   }
+      // }
+      // for (let i = 0; i <eachWord.length; i++) {
+      //   if(eachWord[i] === "q")
+      //   return eachWord.split("qu") + "quay" 
+      // }
+
+      // for (let i = 0; i <eachWord.length; i++) {
+      //   if (vowelsArray.length === 0 && eachWord[i] === "y"){
+      //     const vowelWord = 
+      //   }
+      // }
+
+      if (vowelsArray.includes(eachWord.charAt(0))){
+        return eachWord.concat("way")
+      } else if (eachWord.startsWith("qu")){
+        return eachWord.slice(2).concat("quay") 
+      } else if (eachWord.startsWith("squ")){
+        return eachWord.slice(3).concat("squay")
+      } else if(vowelsArray.length === 0){
+        return eachWord.substring(eachWord.indexOf("y")).concat(eachWord.substring(0, eachWord.indexOf("y"))) + "ay"
+      } else
+        return eachWord.substring(eachWord.indexOf(vowelsArray[0])).concat(eachWord.substring(0, eachWord.indexOf(vowelsArray[0]))) + "ay"
     
+      
+
+        // else if (eachWord.includes("y"))
+        // return eachWord.slice("").concat(eachWord) + "ay"
+
+
+
+
+        
+        // else if (eachWord.includes("y"))
+        // return eachWord.concat("ay")
+
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
+
       return eachWord
+      
     })
 
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
@@ -49,14 +94,14 @@ const App = () => {
 
   // ACTION ITEM: this method restarts the game by setting the original state, when you are ready for your full user experience delete the test words in setUserInput and pass an empty string
   const restartGame = () => {
-    setUserInput("apple through queen squeal fry fluent")
+    setUserInput("")
     setInputTranslated("")
   }
 
   // NO MODIFICATION NEEDED: this method prevents React from refreshing the page unnecessarily
   const setUpPreventDefault = (e) => {
     e.preventDefault()
-    myPigLatinCodeHere()
+    pigLatinCode()
   }
 
   // NO MODIFICATION NEEDED: this method takes the value of the input and saves it in state
@@ -67,7 +112,7 @@ const App = () => {
   return (
     <div className="page-container">
       <div className="body-container">
-        <h1>Pig Latin Translator</h1>
+        <h1>🥓Athian and Nate's Pig Latin Translator 🥓</h1>
         <img
           src={butcherPigImage}
           alt="pig with butcher cut names in pig latin"
@@ -75,7 +120,7 @@ const App = () => {
         />
 
         <div className="input-section">
-          <h4>Enter phrase to be translated:</h4>
+          <h4>Enter an English phrase to be translated into Pig Latin:</h4>
           <input
             type="text"
             className="user-input"
@@ -88,7 +133,7 @@ const App = () => {
         </div>
         <p>{inputTranslated}</p>
       </div>
-      <footer>&copy; 2022 | Coded by: Your Names Here!</footer>
+      <footer>&copy; 2022 | Coded by: Athian and Nate</footer>
     </div>
   )
 }
