@@ -37,7 +37,14 @@ const App = () => {
       for (let i = 0; i <vowelsArray.length; i++) {
         if (vowelsArray[i] === eachWord[0]) {
           return eachWord + "way"
+           
+          
+          
         }
+      }
+      for (let i = 0; i <eachWord.length; i++) {
+        if(eachWord[i] === "q")
+        return eachWord.split("qu") + "quay" 
       }
 
       // if (eachWord = vowelsArray)
